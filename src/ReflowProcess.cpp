@@ -32,7 +32,7 @@ void Process_Start(bool useManualSource, bool autoAdvance) {
     ctx.currentStepIndex = 0;
     
     // Read actual temp for start point
-    double readTemp = g_thermocouple.readCelsius();
+    double readTemp = Read_TemperatureC();
     if (!isnan(readTemp)) {
         ctx.currentTemperature = (float)readTemp;
     } else {
@@ -65,7 +65,7 @@ void Process_Update() {
 
     // --- HARDWARE SENSOR UPDATE ---
     if (now - lastTickTime >= SENSOR_READ_DELAY_MS) {
-        double rawTemp = g_thermocouple.readCelsius();
+        double rawTemp = Read_TemperatureC();
         
         if (!isnan(rawTemp)) {
             ctx.currentTemperature = (float)rawTemp;
@@ -73,7 +73,7 @@ void Process_Update() {
             // Serial.printf("Temp: %.2f\n", rawTemp);
         } else {
             // If NaN, we have a sensor error. In a real system, we should safety-stop.
-            Serial.println(F("[SENSOR] Error: MAX6675 returned NaN!"));
+            Serial.println(F("[SENSOR] Error: Thermistor read returned NaN!"));
             // ctx.heaterActive = false; // Emergency stop if desired
         }
         

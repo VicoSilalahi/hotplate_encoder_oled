@@ -17,7 +17,7 @@ void setup() {
     Process_Init();
     
     Serial.println(F("Reflow Controller System Ready"));
-    Serial.printf("MAX6675 Pins: CLK=%d, CS=%d, DO=%d\n", PIN_THERMO_CLK, PIN_THERMO_CS, PIN_THERMO_DO);
+    Serial.printf("Thermistor Pin: %d, Rdiv=%.0f, R25=%.0f, Beta=%.0f\n", PIN_THERMISTOR, THERMISTOR_R_DIV, THERMISTOR_R25, THERMISTOR_BETA);
 }
 
 void loop() {

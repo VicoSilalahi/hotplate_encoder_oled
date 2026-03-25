@@ -2,15 +2,16 @@
 #include <Arduino.h>
 #include <Adafruit_SSD1306.h>
 #include <ESP32Encoder.h>
-#include <max6675.h>
 #include <vector>
+#include <cmath>
 #include "SystemTypes.h"
 #include "Config.h"
 
 // --- Global Objects ---
 extern Adafruit_SSD1306 g_oledDisplay;
 extern ESP32Encoder g_rotaryEncoder;
-extern MAX6675 g_thermocouple;
+// Thermistor read function (returns Celsius)
+double Read_TemperatureC();
 
 // --- System State Structure ---
 struct SystemContext {
